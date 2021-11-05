@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h1= title
+  - var image_names = ["firefighter.jpg", "waitress.jpg", "Doctor.jpg", "teacher.jpg", "Carpenter.jpg"]
+  - for(var i = 0; i<3; i++){
+      - var str = image_names[Math.floor(Math.random()*5)]
+      img(src=`\\images\\${str}`, alt=`\\images\\${str}`, height="300px", width="300px")
+  - }

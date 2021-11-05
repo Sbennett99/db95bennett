@@ -1,0 +1,37 @@
+extends layout
+
+block content
+  h1= title
+  p query.rows: #{query.rows} query.cols: #{query.cols}
+  
+  - var rows = Number(query.rows)
+  - var cols = Number(query.cols)
+  if !Number.isInteger(rows)
+    if !Number.isInteger(cols)
+        p Both Values(rows and cols) are not Integers
+    else 
+      p rows is not an Integer
+  else if !Number.isInteger(cols)
+    p cols is not an Integer
+  else if rows < 1 || rows > 6
+    if cols < 1 || cols > 6
+      p Both Values(rows and cols) out of Range: 1-6
+    else 
+      p rows is out of Range: 1-6
+  else if cols < 1 || cols > 6
+    p cols is out of Range: 1-6
+  else 
+  
+    table#outer
+      - for (let i=0; i<rows; i++) {
+          tr#middle
+            - for (let j=0; j<cols; j++) {
+                td= (i+j)%rows
+            - }
+      - }
+        
+  
+
+  
+
+  

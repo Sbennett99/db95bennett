@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+  
+  - var jobResultsArray = [{job_title:"McDonalds CEO",job_pay:640000 , job_isHourly:false}, {job_title:"Carpenter",job_pay:30 , job_isHourly:true}, {job_title:"McDonalds Manager",job_pay:44000 , job_isHourly:false}] ;
+  
+  div(style="container-fluid", id="Outer") 
+    div(style="row", id="middle")
+      each val in jobResultsArray
+        div(style="col-am-2", id="data") Job Title: #{val.job_title} Job Pay: #{val.job_pay} This job is Hourly(If False then it is Salary): #{val.job_isHourly.toString()}
+
+  
+  
