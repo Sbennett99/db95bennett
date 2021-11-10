@@ -1,9 +1,8 @@
-var express = require('express');
-var router = express.Router();
+var express = require('express'); 
+const job_controlers= require('../controllers/job_controller'); 
+var router = express.Router(); 
+ 
+/* GET costumes */ 
+router.get('/', job_controlers.job_view_all_Page ); 
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('job', { title: 'Search Results Job' });
-});
-
-module.exports = router;
+module.exports = router; 
