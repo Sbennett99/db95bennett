@@ -7,5 +7,7 @@ MyClass
 
 Job
     - job_title(String)
+    
     - pay(number)
+    
     - isHourly(Bool)
