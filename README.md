@@ -6,6 +6,7 @@ This is my readme for assignment 11
 MyClass
 
 Job
+
     - job_title(String)
     
     - pay(number)
