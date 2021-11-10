@@ -55,7 +55,7 @@ var usersRouter = require('./routes/users');
 var jobRouter = require('./routes/job');
 var addModsRouter = require('./routes/addmods');
 var selectorRouter = require('./routes/selector');
-var resourceRouter = require('./routes/resource')
+var resourceRouter = require('./routes/resource');
 
 var app = express();
 

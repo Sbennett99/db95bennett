@@ -3,8 +3,8 @@ var express = require('express');
 var router = express.Router(); 
  
 // Require controller modules. 
-var api_controller = require('../controllers/api'); 
-var job_controller = require('../controllers/job'); 
+var api_controller = require('../controllers/api_controller'); 
+var job_controller = require('../controllers/job_controller'); 
  
 /// API ROUTE /// 
  
