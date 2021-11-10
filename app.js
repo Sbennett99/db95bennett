@@ -55,6 +55,7 @@ var usersRouter = require('./routes/users');
 var jobRouter = require('./routes/job');
 var addModsRouter = require('./routes/addmods');
 var selectorRouter = require('./routes/selector');
+var resourceRouter = require('./routes/resource')
 
 var app = express();
 
@@ -73,6 +74,7 @@ app.use('/users', usersRouter);
 app.use('/job', jobRouter);
 app.use('/addmods', addModsRouter);
 app.use('/selector', selectorRouter);
+app.use('/resource', resourceRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
