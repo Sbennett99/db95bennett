@@ -4,6 +4,52 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+const connectionString =  process.env.MONGO_CON 
+mongoose = require('mongoose'); 
+mongoose.connect(connectionString,  
+  {useNewUrlParser: true, 
+    useUnifiedTopology: true}); 
+
+//Get the default connection 
+var db = mongoose.connection; 
+ 
+//Bind connection to error event  
+db.on('error', console.error.bind(console, 'MongoDB connection error:')); 
+db.once("open", function(){console.log("Connection to DB succeeded")}); 
+
+var Job = require("./models/job");
+
+// We can seed the collection if needed on server start 
+async function recreateDB(){ 
+  // Delete everything 
+  await Job.deleteMany(); 
+  
+  let instance1 = new 
+Job({job_title:"McDonalds CEO",pay:640000 , isHourly:false}); 
+  instance1.save( function(err,doc) { 
+      if(err) return console.error(err); 
+      console.log("First object saved") 
+  }); 
+ 
+let instance2 = new 
+Job({job_title:"Carpenter",pay:30 , isHourly:true}); 
+  instance2.save( function(err,doc) { 
+      if(err) return console.error(err); 
+      console.log("First object saved") 
+  }); 
+
+let instance3 = new 
+Job({job_title:"McDonalds Manager",pay:44000 , isHourly:false}); 
+  instance3.save( function(err,doc) { 
+      if(err) return console.error(err); 
+      console.log("First object saved") 
+  }); 
+}
+let reseed = true; 
+if (reseed) { recreateDB();} 
+
+
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var jobRouter = require('./routes/job');
