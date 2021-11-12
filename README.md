@@ -1,6 +1,6 @@
 # db95bennett
 ## By: Seth Bennett
-This is my readme for assignment 11
+This is my readme for assignment 11 and 12
 [My Heroku Server](https://db95bennett.herokuapp.com/)
 
 MyClass
