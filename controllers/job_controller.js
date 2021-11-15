@@ -48,8 +48,16 @@ exports.job_create_post = async function(req, res) {
 
  
 // Handle Job delete form on DELETE. 
-exports.job_delete = function(req, res) { 
-    res.send('NOT IMPLEMENTED: Job delete DELETE ' + req.params.id); 
+exports.job_delete = async function(req, res) { 
+    console.log("delete "  + req.params.id) 
+    try { 
+        result = await Job.findByIdAndDelete( req.params.id) 
+        console.log("Removed " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": Error deleting ${err}}`); 
+    } 
 }; 
  
 // Handle Job update form on PUT. 
