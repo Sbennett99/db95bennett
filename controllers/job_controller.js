@@ -74,11 +74,21 @@ exports.job_update_put =  async function(req, res) {
         let result = await toUpdate.save(); 
         console.log("Sucess " + result) 
         res.send(result) 
+        
     } catch (err) { 
         res.status(500) 
-        res.send(`{"error": ${err}: Update for id ${req.params.id} failed`); 
+        res.send(`{"error": ${err}: Update for id ${req.params.id} failed`);
+
     } 
 }; 
+
+
+
+
+
+
+
+// New Controllers A12 -----------------------------------------------
 
 // Handle a show all view 
 exports.job_view_all_Page = async function(req, res) { 
@@ -90,4 +100,61 @@ exports.job_view_all_Page = async function(req, res) {
         res.status(500); 
         res.send(`{"error": ${err}}`); 
     }   
+}; 
+
+
+
+
+// Handle a show one view with id specified by query 
+exports.job_view_one_Page = async function(req, res) { 
+    console.log("single view for id "  + req.query.id) 
+    try{ 
+        result = await Job.findById( req.query.id) 
+        res.render('jobdetail', { title: 'Job Detail', toShow: result }); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+}; 
+
+ // Handle building the view for creating a job. 
+// No body, no in path parameter, no query. 
+// Does not need to be async 
+exports.job_create_Page =  function(req, res) { 
+    console.log("create view") 
+    try{ 
+        res.render('jobcreate', { title: 'Job Create'}); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+}; 
+
+// Handle building the view for updating a job. 
+// query provides the id 
+exports.job_update_Page =  async function(req, res) { 
+    console.log("update view for item "+req.query.id) 
+    try{ 
+        let result = await Job.findById(req.query.id) 
+        res.render('jobupdate', { title: 'Job Update', toShow: result }); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+}; 
+
+// Handle a delete one view with id from query 
+exports.job_delete_Page = async function(req, res) { 
+    console.log("Delete view for id "  + req.query.id) 
+    try{ 
+        result = await Job.findById(req.query.id) 
+        res.render('jobdelete', { title: 'Job Delete', toShow: result }); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
 }; 

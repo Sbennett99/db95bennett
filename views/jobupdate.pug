@@ -1,0 +1,54 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  - let jobid = toShow._id 
+  - let job_title = toShow.job_title
+  - let pay = toShow.pay 
+  - let isHourly = toShow.isHourly
+  div.row(class='mb-2') 
+    div.mr-1 ID is 
+    div #{jobid} 
+  - let actionid = "/resource/jobs/" + jobid 
+  form(id='JobForm', action=actionid, method="PUT") 
+    div.form-group 
+        label.jobAttr(for='job_title') Job Title 
+        input#job_type(type='text', name='job_title' value=job_title) 
+    div.form-group 
+        label.jobAttr(for='pay') Job Pay 
+        input#size(type='number', name='pay' value=pay) 
+    div.form-group 
+        label.jobAttr(for='isHourly') Job is Hourly 
+        input#cost(type='checkbox', name='isHourly', onclick="checker(this)", value=isHourly, checked=isHourly) 
+    input(type="submit") 
+ 
+  script. 
+    function checker(check){
+        
+        if(check.checked == true || checked.value == true){
+            check.checked = true;
+            check.value = true;
+            
+        }else{
+            check.checked = false;
+            check.value = false;
+        }
+    }
+    
+    document.forms['CostumeForm'].addEventListener('submit', (event) => { 
+      event.preventDefault(); 
+      // TODO do something here to show user that form is being submitted 
+      fetch(event.target.action, { 
+        method: 'PUT', 
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Update succeded") 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Update failed " + error ) 
+      }); 
+    }); 

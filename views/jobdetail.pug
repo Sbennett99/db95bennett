@@ -1,0 +1,22 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  - let jobid = toShow._id 
+  - let job_title = toShow.job_title
+  - let pay = toShow.pay 
+  - let isHourly = toShow.isHourly
+  div 
+    div.row 
+      div(class='jobAttr mr-3') Job ID is: 
+      div #{jobid} 
+    div.row 
+      div(class='jobAttr mr-3') Job Title is: 
+      div #{job_title} 
+    div.row 
+      div(class='jobAttr mr-3') Job Pay is: 
+      div #{pay} 
+    div.row 
+      div(class='jobAttr mr-3') Job is Hourly: 
+      div #{isHourly} 

@@ -27,5 +27,6 @@ router.get('/jobs/:id', job_controller.job_detail);
  
 // GET request for list of all Job items. 
 router.get('/jobs', job_controller.job_list); 
+
  
 module.exports = router; 

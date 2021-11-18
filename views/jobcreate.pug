@@ -1,0 +1,43 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  form(id='JobForm', action="/resource/jobs", method="POST") 
+    div.form-group 
+        label.jobAttr(for='job_title') Job Title 
+        input#job_type(type='text', name='job_title') 
+    div.form-group 
+        label.jobAttr(for='pay') Job Pay 
+        input#size(type='number', name='pay') 
+    div.form-group 
+        label.jobAttr(for='isHourly') Job is Hourly 
+        input#cost(type='checkbox', name='isHourly', onclick="checker(this)", value=false) 
+    input(type="submit") 
+ 
+  script. 
+    function checker(check){
+        
+        if(check.checked == true){
+            check.value = true;
+            
+        }else{
+            check.value = false;
+        }
+    }
+    document.forms['JobForm'].addEventListener('submit', (event) => { 
+      event.preventDefault(); 
+      // TODO do something here to show user that form is being submitted 
+      fetch(event.target.action, { 
+        method: 'POST', 
+        body: new URLSearchParams(new FormData(event.target)) 
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Update succeded") 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Update failed " + error ) 
+      }); 
+    }); 
