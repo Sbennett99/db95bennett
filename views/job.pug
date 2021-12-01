@@ -1,6 +1,11 @@
 extends layout
 
 block content
+  - let create = `dispatch(\"/job/create\")`
+  button.btn(class="btn-primary ml-l",onclick=create) Create New Job
+  br
+  br
+
   h1= title
   
   - var jobResultsArray = results
@@ -8,9 +13,22 @@ block content
   div(style="container-fluid", id="Outer") 
     each val in jobResultsArray
       div(style="row", id="middle")
+        - let destination = `dispatch(\"/job/update?id=${val._id}\")`
+        - let toDetail = `dispatch(\"/job/detail?id=${val._id}\")`
+        - let toDelete = `dispatch(\"/job/delete?id=${val._id}\")`
         div(style="col-3", id="dataTitle") Job Title: #{val.job_title} 
         div(style="col-3", id="dataPay") Job Pay: #{val.pay} 
         div(style="col-3", id="dataisHourly") This job is Hourly(If False then it is Salary): #{val.isHourly}
+        button.btn(class="btn-primary ml-l", onclick=destination) Update
+        button.btn(class="btn-primary ml-l", onclick=toDetail) Detail 
+        button.btn(class="btn-primary ml-l", onclick=toDelete) Delete
+        
+        br
+        br
         br
   
+  script. 
+    function dispatch(path){ 
+      window.location.href=path 
+    } 
   
